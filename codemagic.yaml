@@ -1,0 +1,51 @@
+workflows:
+    android-workflow:
+        name: Android Workflow
+        max_build_duration: 120
+        instance_type: windows_x2
+
+        triggering:
+            events:                      
+                - push
+
+        cache:
+            cache_paths:
+                - ~/.gradle/caches
+
+        environment:
+            groups:
+                - google_credentials_f
+            android_signing:
+                - codemagic
+            vars:
+                PACKAGE_NAME: "com.exam.codemagic_hello_world_android"
+
+        scripts:
+            - name: Install npm dependencies
+              script: | 
+                npm install
+            - name: Set Android SDK location
+              script: | 
+                echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
+            - name: Build Android release
+              script: | 
+                  cd android
+                  ./gradlew bundleRelease
+
+        artifacts:
+            - android/app/build/outputs/**/*.aab
+
+        publishing:
+            google_play:
+                credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS
+                track: internal
+                submit_as_draft: true
+            slack:
+                channel: '#codemagic-hello-world-stack'
+                notify_on_build_start: false
+                notify:
+                    success: false
+                    failure: false
+
+
+

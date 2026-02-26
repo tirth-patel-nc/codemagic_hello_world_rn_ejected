@@ -1,17 +1,19 @@
 {
   "expo": {
-    "name": "CodemagicHelloWorldRnEjected",
-    "slug": "CodemagicHelloWorldRnEjected",
+    "name": "CodemagicCodemagicHelloWorldRnEjectedRnEjected",
+    "slug": "CodemagicCodemagicHelloWorldRnEjectedRnEjected",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "codemagichelloworldrnejected",
+    "scheme": "codemagiccodemagichelloworldrnejectedrnejected",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.exam.codemagic-hello-world-android"
     },
     "android": {
+      "package": "com.exam.codemagic_hello_world_android",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
